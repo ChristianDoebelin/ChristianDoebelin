@@ -1,0 +1,49 @@
+local boxColor = Color3.fromRGB(0, 255, 255) -- Cyan
+local boxSize = UDim2.new(1, 0, 0, 40) -- Size of the box
+local boxOffset = Vector3.new(0, 3, 0) -- Offset above the player's character
+local textSize = 20 -- Font size of the username text
+
+-- Function to create a box with the username on top of each player's character
+local function createBoxWithUsername(player)
+    local character = player.Character
+    if character then
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+        if humanoidRootPart then
+            local billboardGui = Instance.new("BillboardGui")
+            billboardGui.Adornee = humanoidRootPart
+            billboardGui.Size = boxSize
+            billboardGui.StudsOffset = boxOffset
+            billboardGui.Parent = humanoidRootPart
+
+            local textLabel = Instance.new("TextLabel")
+            textLabel.Text = player.Name
+            textLabel.Font = Enum.Font.SourceSans
+            textLabel.TextSize = textSize
+            textLabel.TextColor3 = boxColor
+            textLabel.BackgroundTransparency = 1
+            textLabel.Size = UDim2.new(1, 0, 1, 0)
+            textLabel.Parent = billboardGui
+        end
+    end
+end
+
+-- Function to remove all BillboardGui objects
+local function removeBillboardGuis()
+    for _, billboardGui in ipairs(game.Workspace:GetChildren()) do
+        if billboardGui:IsA("BillboardGui") then
+            billboardGui:Destroy()
+        end
+    end
+end
+
+-- Connect to player added event
+game.Players.PlayerAdded:Connect(function(player)
+    -- Create box with username for the new player
+    createBoxWithUsername(player)
+end)
+
+-- Connect to player removing event
+game.Players.PlayerRemoving:Connect(function(player)
+    -- Remove box with username associated with the leaving player
+    removeBillboardGuis()
+end)
