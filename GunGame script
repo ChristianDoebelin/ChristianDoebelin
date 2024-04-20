@@ -1,0 +1,73 @@
+a script that expands players hitbox by 5x, makes ESP, and makes the player be able to shoot through walls. 
+
+
+
+Well heres the script:
+
+
+-- Get the player's character
+local player = game.Players.LocalPlayer
+local character = player.Character
+
+-- Get the player's Humanoid and PrimaryPart
+local humanoid = character:WaitForChild("Humanoid")
+local primaryPart = character:WaitForChild(humanoid.PrimaryPart.Name)
+
+-- Create a ScreenGui in StarterGui
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+-- Create a draggable Frame
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 200, 0, 100)
+Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+Frame.BackgroundTransparency = 0.7 -- Set the Frame's transparency to 70%
+Frame.BorderSizePixel = 0
+Frame.Active = true
+Frame.Draggable = true
+Frame.Parent = ScreenGui
+
+-- Create the ESP button
+local ESPButton = Instance.new("TextButton")
+ESPButton.Size = UDim2.new(0, 60, 0, 30)
+ESPButton.Position = UDim2.new(0, 10, 0, 10)
+ESPButton.Text = "ESP"
+ESPButton.BackgroundColor3 = Color3.new(0, 0.4, 1)
+ESPButton.TextColor3 = Color3.new(1, 1, 1)
+ESPButton.BackgroundTransparency = 0.5 -- Set the button's transparency to 50%
+ESPButton.Parent = Frame
+
+-- Connect the ESP button to the ESP script
+ESPButton.MouseButton1Click:Connect(function()
+    -- Add your ESP script here
+end)
+
+-- Create the hitbox expansion button
+local HitboxButton = Instance.new("TextButton")
+HitboxButton.Size = UDim2.new(0, 60, 0, 30)
+HitboxButton.Position = UDim2.new(0, 80, 0, 10)
+HitboxButton.Text = "Hitbox x5"
+HitboxButton.BackgroundColor3 = Color3.new(0, 0.4, 1)
+HitboxButton.TextColor3 = Color3.new(1, 1, 1)
+HitboxButton.BackgroundTransparency = 0.5 -- Set the button's transparency to 50%
+HitboxButton.Parent = Frame
+
+-- Connect the Hitbox button to the hitbox expansion script
+HitboxButton.MouseButton1Click:Connect(function()
+    -- Add your hitbox expansion script here
+end)
+
+-- Create the wallhack button
+local WallhackButton = Instance.new("TextButton")
+WallhackButton.Size = UDim2.new(0, 60, 0, 30)
+WallhackButton.Position = UDim2.new(0, 150, 0, 10)
+WallhackButton.Text = "Wallhack"
+WallhackButton.BackgroundColor3 = Color3.new(0, 0.4, 1)
+WallhackButton.TextColor3 = Color3.new(1, 1, 1)
+WallhackButton.BackgroundTransparency = 0.5 -- Set the button's transparency to 50%
+WallhackButton.Parent = Frame
+
+-- Connect the Wallhack button to the wallhack script
+WallhackButton.MouseButton1Click:Connect(function()
+    -- Add your wallhack script here
+end)
